@@ -58,6 +58,7 @@ public class DszConsumer3 {
 //            });
             if(1==partition && 2==offset){
                 /**
+                 * 指定分区offset消费
                  * 参考：https://blog.csdn.net/weixin_37150792/article/details/89851731
                  */
                 log.info("提交topic={},partition={},offset={}消息。",topic,partition,offset);
