@@ -37,7 +37,7 @@ public class MyTestController {
      }
 
     @GetMapping("/session")
-    public void session(HttpServletRequest request) throws IOException {
+    public void session(HttpServletRequest request) {
         HttpSession session = request.getSession();
         System.err.println("SessionId = " + session.getId());
     }
