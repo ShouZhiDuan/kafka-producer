@@ -36,7 +36,7 @@ public class DszKafkaProducer extends Thread{
     @Override
     public void run() {
         int num=0;
-        while(num<1) {
+        while(num<3) {
             try {
                 String msg="dsz kafka practice msg:"+num;
                 //get 会拿到发送的结果
@@ -60,6 +60,6 @@ public class DszKafkaProducer extends Thread{
     }
 
     public static void main(String[] args) {
-        new DszKafkaProducer("test-topic").start();
+        new DszKafkaProducer("test-topic-88").start();
     }
 }

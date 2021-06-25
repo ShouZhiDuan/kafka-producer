@@ -1,10 +1,9 @@
 package com.kafka.producer.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.kafka.producer.DTO.DataDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @Auther: ShouZhi@Duan
@@ -110,6 +110,23 @@ public class MyTestController {
         }
         log.info("BODY2：" + sb.toString().trim());
         return sb.toString().trim();
+    }
+
+    private AtomicInteger intersection  = new AtomicInteger(0);
+
+    @GetMapping("/jmeter")
+    public String testJMeter() throws InterruptedException {
+        int i = intersection.incrementAndGet();
+        System.out.println("intersection = " + i);
+        if(i%100 == 0){
+            //throw new RuntimeException("EXCEPTION！！！！！！");
+        }
+        return "SUCCESS！！！！！！";
+    }
+
+    @GetMapping("/exe")
+    public String exe() {
+            throw new RuntimeException("EXCEPTION！！！！！！");
     }
 
 }
