@@ -1,5 +1,7 @@
 package com.kafka.producer.util;
 
+import com.alibaba.fastjson.JSON;
+import com.kafka.producer.DTO.DataDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -42,9 +44,13 @@ public class DszKafkaProducer extends Thread{
                 //get 会拿到发送的结果
                 //同步 get() -> Future()
                 //回调通知
+                DataDTO dataDTO = new DataDTO();
+                dataDTO.setAge(num);
+                dataDTO.setName("testName-" + num);
                 Object o = producer.send(
                         //消息体
-                        new ProducerRecord<>(topic, 2, "测试消息test-topic-88-msg-" + num),
+                        //new ProducerRecord<>(topic, 2, "测试消息test-topic-88-msg-" + num),
+                        new ProducerRecord<>(topic, 2, dataDTO),
                         //发送成功异步回调(非阻塞)
                         (metadata, exception) -> {
                             log.info("异步回调：主题->" + metadata.topic() + " 分区编号->" + metadata.partition() + "当前分区上的索引->" + metadata.offset());

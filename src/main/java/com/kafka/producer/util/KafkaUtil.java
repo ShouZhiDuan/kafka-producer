@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class KafkaUtil {
-    @Autowired
-    private KafkaTemplate kafkaTemplate;
 
+    @Autowired(required = false)
+    private KafkaTemplate kafkaTemplate;
 
     /**
      * 普通消息发送
@@ -25,7 +25,7 @@ public class KafkaUtil {
             //kafkaTemplate.send("test-topic-111111","test"+i,"value" + i);
             //指定partition_index，key。注意这里的第二个参数partition是指kafka集群里面的分区索引，而不是分区的数量，不要混淆。
             //kafkaTemplate.send("test-topic88",1,"test"+i,"value" + i);
-            kafkaTemplate.send("test-topic99",1,"test99"+i,"value" + i);
+            kafkaTemplate.send("test-topic-88",1,"test99"+i,"value" + i);
         }
     }
 
