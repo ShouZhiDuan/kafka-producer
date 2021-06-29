@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaUtil {
 
-    @Autowired(required = false)
+    @Autowired
     private KafkaTemplate kafkaTemplate;
 
     /**
