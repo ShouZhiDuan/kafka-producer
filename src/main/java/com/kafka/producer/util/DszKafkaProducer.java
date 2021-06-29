@@ -50,7 +50,7 @@ public class DszKafkaProducer extends Thread{
                 Object o = producer.send(
                         //消息体
                         //new ProducerRecord<>(topic, 2, "测试消息test-topic-88-msg-" + num),
-                        new ProducerRecord<>(topic, 2, dataDTO),
+                        new ProducerRecord<>(topic, 2, JSON.toJSONString(dataDTO)),
                         //发送成功异步回调(非阻塞)
                         (metadata, exception) -> {
                             log.info("异步回调：主题->" + metadata.topic() + " 分区编号->" + metadata.partition() + "当前分区上的索引->" + metadata.offset());

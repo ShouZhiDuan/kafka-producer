@@ -21,13 +21,13 @@ public class TestMsgConsumer {
     /**
      * 不指定分区消费(单个串行消费)
      */
-    @KafkaListener(topics = {TOPIC},groupId = "TestMsgConsumer-666666-9")
-    public void test(ConsumerRecord record){
-        Optional<?> msg = Optional.ofNullable(record.value());
-        if(msg.isPresent()){
-            System.err.println(msg.get());
-        }
-    }
+//    @KafkaListener(topics = {TOPIC},groupId = "TestMsgConsumer-666666-9")
+//    public void test(ConsumerRecord record){
+//        Optional<?> msg = Optional.ofNullable(record.value());
+//        if(msg.isPresent()){
+//            System.err.println(msg.get());
+//        }
+//    }
 
 
 }
