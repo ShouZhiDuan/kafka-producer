@@ -63,4 +63,5 @@ public class KafkaProducerConfig {
     public ProducerFactory<String, String> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
+
 }

@@ -81,4 +81,8 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
+    @Bean
+    public MsgProducerListener producerListener(){
+        return new MsgProducerListener();
+    }
 }

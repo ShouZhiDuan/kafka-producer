@@ -1,5 +1,6 @@
 package com.kafka.producer.task;
 
+import com.kafka.producer.producer.MsgProducerListener;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.admin.AdminClient;
@@ -12,6 +13,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.Date;
 import java.util.Map;
@@ -32,6 +34,8 @@ public class KafkaTask {
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
+    @Autowired
+    private MsgProducerListener producerListener;
     private static int counter;
 
     @Value("${fillersmart.analyze.car.topic.consumer}")
@@ -40,7 +44,8 @@ public class KafkaTask {
     @Scheduled(fixedRate = 3000)
     public void schedule(){
          counter = ++counter;
-         kafkaTemplate.send(topic,"【msg-"+(counter)+"】");
+         kafkaTemplate.setProducerListener(producerListener);
+         ListenableFuture send = kafkaTemplate.send(topic, "【msg-" + (counter) + "】");
          log.info("【生产者】消息发送成功：" + "【msg-"+(counter)+"】");
     }
 
