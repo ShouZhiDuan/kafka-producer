@@ -36,6 +36,7 @@ public class KafkaTask {
 
     @Autowired
     private MsgProducerListener producerListener;
+
     private static int counter;
 
     @Value("${fillersmart.analyze.car.topic.consumer}")
@@ -43,10 +44,11 @@ public class KafkaTask {
 
     @Scheduled(fixedRate = 3000)
     public void schedule(){
-         counter = ++counter;
-         kafkaTemplate.setProducerListener(producerListener);
-         ListenableFuture send = kafkaTemplate.send(topic, "【msg-" + (counter) + "】");
-         log.info("【生产者】消息发送成功：" + "【msg-"+(counter)+"】");
+        long start = System.currentTimeMillis();
+        counter = ++counter;
+         kafkaTemplate.send(topic, "【msg-" + (counter) + "】");
+        long end = System.currentTimeMillis();
+        log.info("【生产者】执行发送消息，耗时：" + (end-start) + "ms");
     }
 
 }

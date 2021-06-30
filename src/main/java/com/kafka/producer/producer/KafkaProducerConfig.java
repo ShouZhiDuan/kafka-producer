@@ -57,11 +57,19 @@ public class KafkaProducerConfig {
 
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
-        return new KafkaTemplate(producerFactory());
+        KafkaTemplate kafkaTemplate = new KafkaTemplate(producerFactory());
+        //设置全局消息发送监听器
+        kafkaTemplate.setProducerListener(producerListener());
+        return kafkaTemplate;
     }
 
     public ProducerFactory<String, String> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
+    }
+
+    @Bean
+    public MsgProducerListener producerListener(){
+        return new MsgProducerListener();
     }
 
 }
