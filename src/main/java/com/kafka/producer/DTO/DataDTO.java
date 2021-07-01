@@ -8,6 +8,7 @@ import lombok.Data;
  */
 @Data
 public class DataDTO {
-    private String name;
-    private Integer age;
+    private String name = "testName";
+    private Integer age = 16;
+    private String addr = "地址";
 }

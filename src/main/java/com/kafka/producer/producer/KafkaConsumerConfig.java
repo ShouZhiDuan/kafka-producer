@@ -47,7 +47,7 @@ public class KafkaConsumerConfig {
     /**
      * 批量消费一次最大拉取的数据量
      */
-    @Value("${spring.kafka.consumer.max-poll-records}")
+    @Value("${spring.kafka.consumer.max-poll-records:10}")
     private int maxPollRecordsConfig;
 
     /**
@@ -62,7 +62,7 @@ public class KafkaConsumerConfig {
         propsMap.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         propsMap.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         propsMap.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-        propsMap.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, maxPollRecordsConfig);
+        //propsMap.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, maxPollRecordsConfig);
         return propsMap;
     }
 

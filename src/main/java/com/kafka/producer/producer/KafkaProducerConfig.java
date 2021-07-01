@@ -9,6 +9,8 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.support.serializer.JsonSerializer;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,6 +52,7 @@ public class KafkaProducerConfig {
         props.put(ProducerConfig.RETRIES_CONFIG, retries);
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, batchSize);
         props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, bufferMemory);
+        props.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, "false"); // 设置不包含 header,节省磁盘空间
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         return props;
@@ -60,6 +63,7 @@ public class KafkaProducerConfig {
         KafkaTemplate kafkaTemplate = new KafkaTemplate(producerFactory());
         //设置全局消息发送监听器
         kafkaTemplate.setProducerListener(producerListener());
+        kafkaTemplate.setMessageConverter(customRecordMessageConverter());
         return kafkaTemplate;
     }
 
@@ -67,9 +71,22 @@ public class KafkaProducerConfig {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
+    /**
+     * 消息监听器
+     */
     @Bean
     public MsgProducerListener producerListener(){
         return new MsgProducerListener();
     }
+
+    /**
+     * 消息拦截器(转换器)
+     */
+    @Bean
+    public CustomRecordMessageConverter customRecordMessageConverter(){
+        return new CustomRecordMessageConverter();
+    }
+
+
 
 }
