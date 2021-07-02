@@ -8,6 +8,7 @@ import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.ListConsumerGroupOffsetsResult;
 import org.apache.kafka.clients.consumer.OffsetAndMetadata;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.TopicPartition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
@@ -60,7 +62,10 @@ public class KafkaTask {
             //{"addr":"地址", "age":16, "name":"testName"}
             //kafkaTemplate.send("test-topic-89", JSON.toJSONString(data));
             //1,2,3
-            kafkaTemplate.send("test-topic-fix", JSON.toJSONString(data));
+            //kafkaTemplate.send("test-topic-fix", JSON.toJSONString(data));
+            Map<String, Object> map = new HashMap();
+            map.put("key",data);
+            kafkaTemplate.send("test-topic-fix", map);
         }
     }
 

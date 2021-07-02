@@ -52,9 +52,9 @@ public class KafkaProducerConfig {
         props.put(ProducerConfig.RETRIES_CONFIG, retries);
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, batchSize);
         props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, bufferMemory);
-        props.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, "false"); // 设置不包含 header,节省磁盘空间
+        //props.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, "false"); // 设置不包含 header,节省磁盘空间
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return props;
     }
 

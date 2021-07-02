@@ -46,10 +46,10 @@ public class MyConsumer {
     /**
      * test-topic-88
      */
-    @KafkaListener(topics = "test-topic-89",groupId = "test-topic-89-group-1")
-    public void carListen2(List<DataDTO> data) {
-        System.out.println(data);
-    }
+//    @KafkaListener(topics = "test-topic-89",groupId = "test-topic-89-group-1")
+//    public void carListen2(List<DataDTO> data) {
+//        System.out.println(data);
+//    }
 
 
 

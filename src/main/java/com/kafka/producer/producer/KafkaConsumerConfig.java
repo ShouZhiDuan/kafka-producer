@@ -74,6 +74,7 @@ public class KafkaConsumerConfig {
         factory.getContainerProperties().setPollTimeout(1500); //消息拉取阻塞时间1.5秒。表示如果在1.5秒内没有消息则连接超时断开。
         factory.setBatchListener(true); //启用批量消费和spring.kafka.consumer.max-poll-records配合使用。
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE); //开启真正手动提交模式
+        factory.setMessageConverter(null);
         return factory;
     }
 
