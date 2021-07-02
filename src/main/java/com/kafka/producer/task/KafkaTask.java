@@ -48,11 +48,13 @@ public class KafkaTask {
         for (int i = 0; i < 500; i++) {
             //{"addr":"地址", "age":16, "name":"testName"}
             //kafkaTemplate.send("test-topic-89", JSON.toJSONString(data));
+
             //1,2,3
             //kafkaTemplate.send("test-topic-fix", JSON.toJSONString(data));
-            Map<String, Object> map = new HashMap();
-            map.put("key",data);
-            kafkaTemplate.send("test-topic-fix", map);
+
+//            Map<String, Object> map = new HashMap();
+//            map.put("key",data);
+            kafkaTemplate.send("test-topic-fix", data);
         }
     }
 
