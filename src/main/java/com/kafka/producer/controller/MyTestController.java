@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +35,7 @@ public class MyTestController {
         response.addCookie(cookie);
         response.addCookie(cookie1);
         response.getWriter().print(cookies);
-     }
+    }
 
     @GetMapping("/session")
     public void session(HttpServletRequest request) {
@@ -112,13 +113,13 @@ public class MyTestController {
         return sb.toString().trim();
     }
 
-    private AtomicInteger intersection  = new AtomicInteger(0);
+    private AtomicInteger intersection = new AtomicInteger(0);
 
     @GetMapping("/jmeter")
     public String testJMeter() throws InterruptedException {
         int i = intersection.incrementAndGet();
         System.out.println("intersection = " + i);
-        if(i%100 == 0){
+        if (i % 100 == 0) {
             //throw new RuntimeException("EXCEPTION！！！！！！");
         }
         return "SUCCESS！！！！！！";
@@ -126,7 +127,7 @@ public class MyTestController {
 
     @GetMapping("/exe")
     public String exe() {
-            throw new RuntimeException("EXCEPTION！！！！！！");
+        throw new RuntimeException("EXCEPTION！！！！！！");
     }
 
 }

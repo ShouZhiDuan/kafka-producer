@@ -26,14 +26,14 @@ public class MyPartition implements Partitioner {
         log.info("当前主题的value为：" + value.toString());
         //获取当前主题有多少个分区
         Integer count = cluster.partitionCountForTopic(topic);
-        log.info("当前主题{},共有{}个分区。",topic,count);
+        log.info("当前主题{},共有{}个分区。", topic, count);
         //获取当前主题详情列表
         List<PartitionInfo> partitionInfos = cluster.partitionsForTopic(topic);
-        if(null == key){
+        if (null == key) {
             Random random = new Random();
             return random.nextInt(count);
         }
-        return Math.abs(key.hashCode())%count;
+        return Math.abs(key.hashCode()) % count;
     }
 
     @Override

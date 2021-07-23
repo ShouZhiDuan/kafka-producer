@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @Description: 消息发送回调
  */
 @Slf4j
-public class MsgProducerListener<K,V> implements ProducerListener<K,V> {
+public class MsgProducerListener<K, V> implements ProducerListener<K, V> {
 
     @Override
     public void onSuccess(ProducerRecord<K, V> producerRecord, RecordMetadata recordMetadata) {

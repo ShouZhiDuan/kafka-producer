@@ -12,9 +12,9 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.listener.ContainerProperties;
+
 import java.util.HashMap;
 import java.util.Map;
-
 
 
 /**
@@ -52,6 +52,7 @@ public class KafkaConsumerConfig {
 
     /**
      * 消费者配置
+     *
      * @return 配置map
      */
     public Map<String, Object> consumerConfigs() {

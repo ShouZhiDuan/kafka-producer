@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class MsgCurrentService {
 
     @Async
-    public void readMsg(ConsumerRecord record){
+    public void readMsg(ConsumerRecord record) {
         log.info("线程：" + Thread.currentThread().getName() + "处理消息：" + record.value());
     }
 

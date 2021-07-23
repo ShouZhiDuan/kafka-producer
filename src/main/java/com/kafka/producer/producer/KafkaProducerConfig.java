@@ -44,6 +44,7 @@ public class KafkaProducerConfig {
 
     /**
      * 生产者配置
+     *
      * @return 配置map
      */
     public Map<String, Object> producerConfigs() {
@@ -75,7 +76,7 @@ public class KafkaProducerConfig {
      * 消息监听器
      */
     @Bean
-    public MsgProducerListener producerListener(){
+    public MsgProducerListener producerListener() {
         return new MsgProducerListener();
     }
 
@@ -83,10 +84,9 @@ public class KafkaProducerConfig {
      * 消息拦截器(转换器)
      */
     @Bean
-    public CustomRecordMessageConverter customRecordMessageConverter(){
+    public CustomRecordMessageConverter customRecordMessageConverter() {
         return new CustomRecordMessageConverter();
     }
-
 
 
 }

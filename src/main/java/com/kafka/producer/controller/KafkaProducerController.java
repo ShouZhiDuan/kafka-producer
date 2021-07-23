@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class KafkaProducerController {
 
     @GetMapping(value = "/sendMsg")
-    public Object sendMsg(){
+    public Object sendMsg() {
         return "OK";
     }
 

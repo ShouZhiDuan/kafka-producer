@@ -43,7 +43,7 @@ public class KafkaTask {
 //    }
 
     @Scheduled(cron = "*/30 * * * * ?")
-    public void schedule2(){
+    public void schedule2() {
         DataDTO data = new DataDTO();
         for (int i = 0; i < 500; i++) {
             //{"addr":"地址", "age":16, "name":"testName"}
